@@ -11,6 +11,7 @@ let last_update = Date.now()
 
 let dom_alert_list = document.getElementById('alert_list')
 let dom_alert_list_children = []
+let interval
 
 const dom_donation_alert_name = document.createElement('span')
 dom_donation_alert_name.classList.toggle('name', true)
@@ -50,15 +51,18 @@ function init() {
     triggering = false
     updating = false
     clearTimeout(timeout)
-    update()
+    clearInterval(interval)
+    get_data().then(entries => {
+      updating = false
+      entries.forEach(add_to_donations_list)
+    }).then(_ => interval = setInterval(update, 1000)) 
   })
 
   document.querySelector('#skip').addEventListener('click', skip)
   get_data().then(entries => {
     updating = false
     entries.forEach(add_to_donations_list)
-  }).then(_ => setInterval(update, 1000))
-
+  }).then(_ => interval = setInterval(update, 1000))
 }
 
 let announced = []
@@ -124,7 +128,7 @@ function update() {
     updating = false
     console.log('stopped updating', Date.now())
     entries.forEach(add_to_trigger_queue)
-  }).then(trigger)
+  }).then(trigger).catch(e => update)
 }
 
 function skip() {
