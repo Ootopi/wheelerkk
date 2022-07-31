@@ -102,8 +102,7 @@ function add_to_donations_list(entry) {
   e.textContent = `${entry.name}: ${entry.amount}`
 }
 
-const get_data = _ => fetch(uri).then(r => r.text()).then(console.log)
-//.then(r => r.json())
+const get_data = _ => fetch(uri).then(r => r.json())
 
 function update() {
   if(updating) return
