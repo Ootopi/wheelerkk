@@ -1,5 +1,5 @@
 const id = 146431
-const uri = `https://ootopi-cors-proxy.herokuapp.com/https://www.cycleforhope.sg/user/?id=${id}`
+const uri = `https://ootopi-cors-proxy.herokuapp.com/https://www.cycleforhope.sg/user/${id}`
 
 let dom_donation_list = document.getElementById('donation_list')
 let dom_donation_list_children = []
