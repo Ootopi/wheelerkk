@@ -54,7 +54,7 @@ function init() {
   })
 
   document.querySelector('#skip').addEventListener('click', skip)
-  get_data.then(entries => {
+  get_data().then(entries => {
     updating = false
     entries.forEach(add_to_donations_list)
   }).then(_ => setInterval(update, 1000))
