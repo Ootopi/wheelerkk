@@ -1,5 +1,5 @@
 const id = 146431
-const uri = `https://cors-anywhere.herokuapp.com/https://www.cycleforhope.sg/user/?id=${id}`
+const uri = `https://ootopi-cors-proxy.herokuapp.com/https://www.cycleforhope.sg/user/?id=${id}`
 
 let dom_donation_list = document.getElementById('donation_list')
 let dom_donation_list_children = []
@@ -102,7 +102,8 @@ function add_to_donations_list(entry) {
   e.textContent = `${entry.name}: ${entry.amount}`
 }
 
-const get_data = _ => fetch(uri).then(r => r.json())
+const get_data = _ => fetch(uri).then(r => r.text()).then(console.log)
+//.then(r => r.json())
 
 function update() {
   if(updating) return
