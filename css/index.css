@@ -53,6 +53,7 @@ body {
 
 #controls fieldset option {
     font-family: 'Patrick Hand', cursive;
+    font-size: 1.5em;
 }
 
 #controls fieldset option:active, 
@@ -66,7 +67,7 @@ body {
 #donation_list_fieldset {
     border: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 2em;
+    font-size: 1.5em;
 }
 
 #donation_list_fieldset legend {
