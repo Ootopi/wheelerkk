@@ -1,0 +1,84 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: hidden
+}
+
+#donation_list, #alert_list {
+    width: 100%;
+}
+
+#controls fieldset {
+    display: inline-block;
+    height: 100%;
+}
+
+#donation-alert {
+    display: block;
+    background-color: #1e1e1e;
+    margin: 2rem;
+    padding: 2rem;
+    text-align: center;
+    font-size: 2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    color: #FFF;
+    border-radius: 0.5rem;
+    align-self: center;
+}
+
+#donation-alert .name {
+    color: #cd88fb;
+}
+
+#donation-alert .amount {
+    color: #cd88fb;
+}
+
+#donation-alert .message {
+    display: block;
+    margin: 1rem 2rem 0;
+    font-size: 1.5rem;
+    font-weight: normal;
+}
+
+#skip, #reset {
+    user-select: none;
+}
+
+#skip:hover, #reset:hover {
+    cursor: pointer;
+    background-color: #ccc;
+}
+
+.pulse {
+    animation: appear 10s linear;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.reset {
+    transform: scale(0);
+    opacity: 0;
+}
+
+@keyframes appear {
+    0% { transform: scale(0); opacity: 0;}
+    3% { transform: scale(1.2); opacity: 1; }
+    5% { transform: scale(1); }
+    95% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+#controls {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
