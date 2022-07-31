@@ -114,7 +114,7 @@ const get_data = _ => fetch(uri).then(r => r.text())
     const doc = e.parseFromString(raw, 'text/html')
     const cards = doc.querySelectorAll('div.w-full.rounded-md.border.py-2.border-gray-400')
     
-    const main_goal = doc.querySelector('.fpoppins_medium.text-gray-500.text-lg.flex.justify-center.items-center.my-1').childNodes[0].textContent.trim().split(' ')[0].replaceAll(/[,$]/ig, '')
+    const money_goal = doc.querySelector('.fpoppins_medium.text-gray-500.text-lg.flex.justify-center.items-center.my-1').childNodes[0].textContent.trim().split(' ')[0].replaceAll(/[,$]/ig, '')
 
     const goals = doc.querySelectorAll('.w-full.flex.flex-col.items-baseline.mb-3')
     const money_current = goals[0].childNodes[1].textContent.match(/\$(\d+),(\d+)/)[0].replaceAll(/[$,]/ig, '')
