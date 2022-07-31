@@ -16,6 +16,10 @@ body {
     font-family: 'Patrick Hand', cursive;
 }
 
+#controls fieldset option {
+    font-family: 'Patrick Hand', cursive;
+}
+
 #donation_list_fieldset {
     border: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -47,6 +51,11 @@ body {
     display: inline-block;
     height: 100%;
     outline: none;
+}
+
+#controls fieldset:focus-visible {
+    outline: none;
+    border: 0;
 }
 
 #donation-alert {
