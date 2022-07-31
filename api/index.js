@@ -25,8 +25,8 @@ const dom_donation_alert_msg = document.createElement('span')
 dom_donation_alert_msg.classList.toggle('message', true)
 dom_donation_alert.appendChild(dom_donation_alert_msg)
 
-dom_donation_list.onchange = e => {
-  const entry = announced.find(x => x.id == dom_donation_list.selectedIndex)
+dom_donation_list.onclick = e => {
+  const entry = announced.find(x => x.id == dom_donation_list[dom_donation_list.selectedIndex].value)
   entry.replay = true
   add_to_trigger_queue(entry)
 }
