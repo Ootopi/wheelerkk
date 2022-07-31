@@ -17,6 +17,7 @@ const dom_donation_alert_name = document.createElement('span')
 dom_donation_alert_name.classList.toggle('name', true)
 dom_donation_alert.appendChild(dom_donation_alert_name)
 const dom_donation_alert_amount_prefix = document.createElement('span')
+dom_donation_alert_name.classList.toggle('', true)
 dom_donation_alert.appendChild(dom_donation_alert_amount_prefix)
 const dom_donation_alert_amount = document.createElement('span')
 dom_donation_alert_amount.classList.toggle('amount', true)
@@ -112,6 +113,16 @@ const get_data = _ => fetch(uri).then(r => r.text())
     const e = new DOMParser()
     const doc = e.parseFromString(raw, 'text/html')
     const cards = doc.querySelectorAll('div.w-full.rounded-md.border.py-2.border-gray-400')
+    
+    const main_goal = doc.querySelector('.fpoppins_medium.text-gray-500.text-lg.flex.justify-center.items-center.my-1').childNodes[0].textContent.trim().split(' ')[0].replaceAll(/[,$]/ig, '')
+
+    const goals = doc.querySelectorAll('.w-full.flex.flex-col.items-baseline.mb-3')
+    const money_current = goals[0].childNodes[1].textContent.match(/\$(\d+),(\d+)/)[0].replaceAll(/[$,]/ig, '')
+    const distance_current = goals[1].childNodes[1].textContent.trim().split(' ')[0]
+    const distance_goal = goals[1].childNodes[1].textContent.trim().split(' ')[3]
+
+    console.log(`$${money_current}/$${money_goal} ${distance_current}km/${distance_goal}km`)
+
     return Array.from(cards).map(card => ({
         name: card.querySelector('p:nth-of-type(1)').textContent,
         amount: card.querySelector('p:nth-of-type(2) span').textContent,
