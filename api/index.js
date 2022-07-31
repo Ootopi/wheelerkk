@@ -107,12 +107,14 @@ const get_data = _ => fetch(uri).then(r => r.text())
     const e = document.createElement('div')
     e.innerHTML = raw
     const cards = e.querySelectorAll('div.w-full.rounded-md.border.py-2.border-gray-400')
+    console.log(cards)
     return cards.map(card => ({
         name: card.querySelector('p:nth-of-type(1)').textContent,
         amount: card.querySelector('p:nth-of-type(2) span').textContent,
         message: card.querySelector('p:nth-of-type(3)').textContent,
-    }))})
-    
+    }))
+  })
+
 function update() {
   if(updating) return
   last_update = Date.now()
