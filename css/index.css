@@ -21,13 +21,13 @@ body {
 #money {
     position: relative;
     background-color: #DDD;
-    width: 50%;
+    width: 25%;
     height: 30px;
     margin-left: 20px;
 }
 
 #money_progress {
-    background-color: #8E0;
+    background-color: #0F0;
 }
 
 #money_progress, #money_indicator {
@@ -66,6 +66,7 @@ body {
 #donation_list_fieldset {
     border: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 2em;
 }
 
 #donation_list_fieldset legend {
