@@ -102,7 +102,7 @@ function add_to_donations_list(entry) {
   e.textContent = `${entry.name}: ${entry.amount}`
 }
 
-const get_data = fetch(uri).then(r => r.json())
+const get_data = _ => fetch(uri).then(r => r.json())
 
 function update() {
   if(updating) return
@@ -110,7 +110,7 @@ function update() {
   updating = true
   console.log('updating', Date.now())
 
-  return get_data.then(entries => {
+  return get_data().then(entries => {
     updating = false
     console.log('stopped updating', Date.now())
     entries.forEach(add_to_trigger_queue)
