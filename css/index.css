@@ -6,7 +6,34 @@ body {
     height: 100%;
     padding: 0;
     margin: 0;
-    overflow: hidden
+    overflow: hidden;
+}
+
+#controls fieldset {
+    width: 200px;
+}
+
+#donation_list_fieldset {
+    border: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#donation_list_fieldset legend {
+    font-weight: bold;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+
+::-webkit-scrollbar-track {
+    background: transparent; 
+}
+
+#donation_list {
+    background-color: transparent;
+    border: 0;
+    scrollbar-color: transparent;
 }
 
 #donation_list, #alert_list {
