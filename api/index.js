@@ -101,9 +101,18 @@ function add_to_donations_list(entry) {
   dom_donation_list_children.push(e)
   e.textContent = `${entry.name}: ${entry.amount}`
 }
-fetch(uri).then(r => r.text()).then(console.log)
-const get_data = _ => fetch(uri).then(r => r.json())
 
+const get_data = _ => fetch(uri).then(r => r.text())
+  .then(raw => {
+    const e = document.createElement('div')
+    e.innerHTML = raw
+    const cards = e.querySelectorAll('div.w-full.rounded-md.border.py-2.border-gray-400')
+    return cards.map(card => ({
+        name: card.querySelector('p:nth-of-type(1)').textContent,
+        amount: card.querySelector('p:nth-of-type(2) span').textContent,
+        message: card.querySelector('p:nth-of-type(3)').textContent,
+    }))})
+    
 function update() {
   if(updating) return
   last_update = Date.now()
