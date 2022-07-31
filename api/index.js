@@ -57,7 +57,8 @@ function init() {
   get_data.then(entries => {
     updating = false
     entries.forEach(add_to_donations_list)
-  }).then(update)
+  }).then(_ => setInterval(update, 1000))
+
 }
 
 let announced = []
@@ -107,8 +108,11 @@ function update() {
   if(updating) return
   last_update = Date.now()
   updating = true
+  console.log('updating', Date.now())
+
   return get_data.then(entries => {
     updating = false
+    console.log('stopped updating', Date.now())
     entries.forEach(add_to_trigger_queue)
   }).then(trigger)
 }
@@ -125,9 +129,8 @@ function skip() {
 
 function trigger() {
   if(triggering || trigger_queue.length == 0) {
-    if(!updating && Date.now() - last_update > 10) {
+    if(!updating && Date.now() - last_update > 1000) {
       clearTimeout(timeout)
-      updating = true
       update()
     } else timeout = setTimeout(trigger, 1000)
     return
