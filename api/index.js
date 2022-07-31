@@ -1,5 +1,5 @@
 const id = 146431
-const uri = `https://serverless-wheelerkk.vercel.app/api/cycleforlife-sg?id=${id}`
+const uri = `https://cors-anywhere.herokuapp.com/https://www.cycleforhope.sg/user/?id=${id}`
 
 let dom_donation_list = document.getElementById('donation_list')
 let dom_donation_list_children = []
@@ -97,7 +97,7 @@ function add_to_donations_list(entry) {
   entry.id = counter
   announced.push(entry)
   counter ++
-  dom_donation_list.appendChild(e)
+  dom_donation_list.insertBefore(e, undefined)
   dom_donation_list_children.push(e)
   e.textContent = `${entry.name}: ${entry.amount}`
 }
