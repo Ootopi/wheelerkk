@@ -107,7 +107,7 @@ const get_data = _ => fetch(uri).then(r => r.text())
     const e = new DOMParser()
     const doc = e.parseFromString(raw, 'text/html')
     const cards = doc.querySelectorAll('div.w-full.rounded-md.border.py-2.border-gray-400')
-    return cards.map(card => ({
+    return Array.from(cards).map(card => ({
         name: card.querySelector('p:nth-of-type(1)').textContent,
         amount: card.querySelector('p:nth-of-type(2) span').textContent,
         message: card.querySelector('p:nth-of-type(3)').textContent,
