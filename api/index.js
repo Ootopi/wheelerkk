@@ -107,7 +107,7 @@ const get_data = _ => fetch(uri).then(r => r.text())
     const e = document.createElement('div')
     e.innerHTML = raw
     const cards = e.querySelectorAll('div.w-full.rounded-md.border.py-2.border-gray-400')
-    console.log(cards)
+    console.log(raw)
     return cards.map(card => ({
         name: card.querySelector('p:nth-of-type(1)').textContent,
         amount: card.querySelector('p:nth-of-type(2) span').textContent,
