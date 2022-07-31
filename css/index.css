@@ -15,6 +15,7 @@ body {
     width: 100%;
     padding: 1rem;
     box-sizing: content-box;
+    font-weight: bold;
 }
 
 #money {
