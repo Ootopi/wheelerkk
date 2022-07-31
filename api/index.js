@@ -105,7 +105,7 @@ function add_to_donations_list(entry) {
 const get_data = _ => fetch(uri).then(r => r.text())
   .then(raw => {
     const e = new DOMParser()
-    e.parseFromString(raw)
+    e.parseFromString(raw, 'text/html')
     const cards = e.querySelectorAll('div.w-full.rounded-md.border.py-2.border-gray-400')
     return cards.map(card => ({
         name: card.querySelector('p:nth-of-type(1)').textContent,
