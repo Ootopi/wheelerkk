@@ -124,7 +124,7 @@ const get_data = _ => fetch(uri).then(r => r.text())
       const distance_current = goals[1].childNodes[1].textContent.trim().split(' ')[0]
       const distance_goal = goals[1].childNodes[1].textContent.trim().split(' ')[3]
       console.log(`$${money_current}/$${money_goal} ${distance_current}km/${distance_goal}km`)
-      money_bar.style = `width: ${Math.floor(Math.min(money_goal, money_current)/money_goal)*100}`
+      money_bar.style = `width: ${Math.floor(Math.min(money_goal, money_current)/money_goal*100)}%`
       money_indicator.textContent = `$${money_current} of $${money_goal} raised`
     }
     
