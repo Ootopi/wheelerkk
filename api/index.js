@@ -97,7 +97,7 @@ function add_to_donations_list(entry) {
   entry.id = counter
   announced.push(entry)
   counter ++
-  dom_donation_list.insertBefore(e, dom_donation_list.firstChild)
+  dom_donation_list.prepend(e)
   dom_donation_list_children.push(e)
   e.textContent = `${entry.name}: ${entry.amount}`
 }
