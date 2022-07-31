@@ -53,7 +53,7 @@ body {
     outline: none;
 }
 
-#controls fieldset:focus-visible {
+#controls fieldset select:focus-visible {
     outline: none;
     border: 0;
 }
