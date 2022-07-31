@@ -20,6 +20,14 @@ body {
     font-family: 'Patrick Hand', cursive;
 }
 
+#controls fieldset option:active, 
+#controls fieldset option:focus,
+#controls fieldset option:focus-visible {
+    background-color: transparent;
+    outline: 0;
+    border: 0;
+}
+
 #donation_list_fieldset {
     border: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
