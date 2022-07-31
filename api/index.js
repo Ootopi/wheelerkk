@@ -73,6 +73,8 @@ let triggering = false
 let updating = false
 let timeout
 let counter = 0
+let money_bar = document.getElementById('money_progress')
+let money_indicator = document.getElementById('money_indicator')
 
 function add_to_trigger_queue(entry) {
   const old_entry = announced.find(x => x.name == entry.name && x.amount == entry.amount && x.message == entry.message)
@@ -117,12 +119,15 @@ const get_data = _ => fetch(uri).then(r => r.text())
     const money_goal = doc.querySelector('.fpoppins_medium.text-gray-500.text-lg.flex.justify-center.items-center.my-1').childNodes[0].textContent.trim().split(' ')[0].replaceAll(/[,$]/ig, '')
 
     const goals = doc.querySelectorAll('.w-full.flex.flex-col.items-baseline.mb-3')
-    const money_current = goals[0].childNodes[1].textContent.match(/\$(\d+),(\d+)/)[0].replaceAll(/[$,]/ig, '')
-    const distance_current = goals[1].childNodes[1].textContent.trim().split(' ')[0]
-    const distance_goal = goals[1].childNodes[1].textContent.trim().split(' ')[3]
-
-    console.log(`$${money_current}/$${money_goal} ${distance_current}km/${distance_goal}km`)
-
+    if(goals) {
+      const money_current = goals[0].childNodes[1].textContent.match(/\$(\d+),(\d+)/)[0].replaceAll(/[$,]/ig, '')
+      const distance_current = goals[1].childNodes[1].textContent.trim().split(' ')[0]
+      const distance_goal = goals[1].childNodes[1].textContent.trim().split(' ')[3]
+      console.log(`$${money_current}/$${money_goal} ${distance_current}km/${distance_goal}km`)
+      money_bar.style = `width: ${Math.floor(Math.min(money_goal, money_current)/money_goal)*100}`
+      money_indicator.textContent = `$${money_current} of $${money_goal} raised`
+    }
+    
     return Array.from(cards).map(card => ({
         name: card.querySelector('p:nth-of-type(1)').textContent,
         amount: card.querySelector('p:nth-of-type(2) span').textContent,
