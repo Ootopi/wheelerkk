@@ -120,7 +120,7 @@ const get_data = _ => fetch(uri).then(r => r.text())
     const goals = doc.querySelectorAll('.w-full.flex.flex-col.items-baseline.mb-3')
     
     if(goals) {
-      const money_current = goals[0]?.childNodes[1].textContent.match(/\$(\d+),(\d+)/)[0].replaceAll(/[$,]/ig, '')
+      const money_current = goals[0]?.childNodes[1].textContent.match(/\$((\d+),)?(\d+)/))[0].replaceAll(/[$,]/ig, '')
       // const distance_current = goals[1]?.childNodes[1].textContent.trim().split(' ')[0]
       // const distance_goal = goals[1]?.childNodes[1].textContent.trim().split(' ')[3]
       
