@@ -109,7 +109,8 @@ function add_to_donations_list(entry) {
   e.textContent = `${entry.name}: ${entry.amount}`
 }
 
-const get_data = _ => fetch(uri).then(r => r.text())
+function get_data() {
+  return fetch(uri).then(r => r.text())
   .then(raw => {
     const e = new DOMParser()
     const doc = e.parseFromString(raw, 'text/html')
@@ -137,6 +138,7 @@ const get_data = _ => fetch(uri).then(r => r.text())
         message: card.querySelector('p:nth-of-type(3)').textContent,
     }))
   })
+}
 
 function update() {
   if(updating) return
