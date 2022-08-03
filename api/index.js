@@ -33,37 +33,37 @@ dom_donation_list.onclick = e => {
 }
 
 const donation_alert_sfx = new Audio('./media/default.ogg')
-let audio_context
+let audio_context = new AudioContext()
 
 document.addEventListener('click', init)
+const source = audio_context.createMediaElementSource(donation_alert_sfx)
+source.connect(audio_context.destination)
 
-function init() {
-  audio_context = new AudioContext()
-  const source = audio_context.createMediaElementSource(donation_alert_sfx)
-  source.connect(audio_context.destination)
-  document.removeEventListener('click', init)
-
-  document.querySelector('#reset').addEventListener('click', _ => {
-    announced = []
-    trigger_queue = []
-    dom_donation_list.innerHTML = ''
-    dom_alert_list_children = []
-    dom_alert_list.innerHTML = ''
-    triggering = false
-    updating = false
-    clearTimeout(timeout)
-    clearInterval(interval)
-    get_data().then(entries => {
-      updating = false
-      entries.forEach(add_to_donations_list)
-    }).then(_ => interval = setInterval(update, 1000)) 
-  })
-
-  document.querySelector('#skip').addEventListener('click', skip)
+document.querySelector('#reset').addEventListener('click', _ => {
+  announced = []
+  trigger_queue = []
+  dom_donation_list.innerHTML = ''
+  dom_alert_list_children = []
+  dom_alert_list.innerHTML = ''
+  triggering = false
+  updating = false
+  clearTimeout(timeout)
+  clearInterval(interval)
   get_data().then(entries => {
     updating = false
     entries.forEach(add_to_donations_list)
-  }).then(_ => interval = setInterval(update, 1000))
+  }).then(_ => interval = setInterval(update, 1000)) 
+})
+
+document.querySelector('#skip').addEventListener('click', skip)
+get_data().then(entries => {
+  updating = false
+  entries.forEach(add_to_donations_list)
+}).then(_ => interval = setInterval(update, 1000))
+
+function init() {
+  audio_context.resume()
+  document.removeEventListener('click', init)
 }
 
 let announced = []
@@ -178,10 +178,12 @@ function trigger() {
   dom_donation_alert_amount.textContent = entry.amount.replace('SGD ', 'SGD$')
   dom_donation_alert_msg.textContent = entry.message
   
-  donation_alert_sfx.volume = 0.2
-  donation_alert_sfx.pause()
-  donation_alert_sfx.currentTime = 0
-  donation_alert_sfx.play()
+  if(audio_context.state == 'running') {
+    donation_alert_sfx.volume = 0.2
+    donation_alert_sfx.pause()
+    donation_alert_sfx.currentTime = 0
+    donation_alert_sfx.play()
+  }
 
   const new_node = dom_donation_alert.cloneNode()
   dom_donation_alert.parentNode.replaceChild(new_node, dom_donation_alert)
